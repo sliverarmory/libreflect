@@ -10,6 +10,6 @@ Reflective ELF loader from [mettle](https://github.com/rapid7/mettle/tree/master
 ## Building
 
 ```
-$ mkdir build && cd build
-$ cmake .. && make
+$ cmake -B build
+$ cmake --build build
 ```
