@@ -31,7 +31,7 @@ jobs:
       - name: Build
         run: |
           cmake --build ${{github.workspace}}/build
-          tar -czvf libreflect.tar.gz ${{github.workspace}}/build/libreflect.a
+          tar -czvf libreflect.tar.gz ${{github.workspace}}/build/libreflect.x86_64.a
 
       - name: Sign Package
         run: |
