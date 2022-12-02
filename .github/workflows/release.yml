@@ -34,7 +34,7 @@ jobs:
         run: |
           mkdir artifacts
           cmake --build ${{github.workspace}}/build
-          mv build/libreflect.x86_64.a artifacts/
+          mv build/libreflect.x86_64.a artifacts/libreflect.a
           mv LICENSE artifacts
           cd artifacts
           tar -czvf ../libreflect.tar.gz .
