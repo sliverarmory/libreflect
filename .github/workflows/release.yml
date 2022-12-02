@@ -16,7 +16,7 @@ jobs:
         run: |
           sudo apt-get update --fix-missing && sudo apt-get -y install \
           zip unzip wget jq cmake musl-dev musl musl-tools build-essential
-          
+
       - name: Minisign
         run: |
           MINISIGN_TMP=`mktemp -d`
@@ -24,7 +24,9 @@ jobs:
           wget https://github.com/aead/minisign/releases/download/v0.2.0/minisign-linux-amd64.tar.gz
           tar xvf minisign-linux-amd64.tar.gz
           mv ./minisign ~/minisign
-    
+
+      - uses: actions/checkout@v3
+
       - name: Configure CMake
         run: cmake -B ${{github.workspace}}/build
 
@@ -39,7 +41,7 @@ jobs:
           echo -e "${{ secrets.MINISIGN_PRIVATE_KEY }}" > ~/minisign.key
           COMMENT=$(sha256sum libreflect.tar.gz)
           bash -c "echo \"\" | ~/minisign -s ~/minisign.key -S -m ./libreflect.tar.gz -t \"$COMMENT\" -x libreflect.minisig"
-          
+
       - name: "Publish Release"
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
